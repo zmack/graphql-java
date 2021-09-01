@@ -1193,7 +1193,7 @@ public class SchemaGeneratorHelper {
     }
 
     private List<Directive> directivesOf(List<? extends TypeDefinition> typeDefinitions) {
-        return typeDefinitions.stream()
+        return (List<Directive>)typeDefinitions.stream()
                 .map(TypeDefinition::getDirectives).filter(Objects::nonNull)
                 .<Directive>flatMap(List::stream).collect(Collectors.toList());
     }

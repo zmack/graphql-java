@@ -8,7 +8,6 @@ plugins {
     id 'signing'
     id "com.github.johnrengelman.shadow" version "6.1.0"
     id "biz.aQute.bnd.builder" version "5.1.2"
-    id "io.github.gradle-nexus.publish-plugin" version "1.0.0"
 }
 
 
@@ -37,13 +36,6 @@ def getDevelopmentVersion() {
     println "created development version: $version"
     version
 }
-
-if (JavaVersion.current() != JavaVersion.VERSION_1_8) {
-    def msg = String.format("This build must be run with java 1.8 - you are running %s - gradle finds the JDK via JAVA_HOME=%s",
-            JavaVersion.current(), System.getenv("JAVA_HOME"))
-    throw new GradleException(msg)
-}
-
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -273,15 +265,6 @@ publishing {
                     }
                 }
             }
-        }
-    }
-}
-
-nexusPublishing {
-    repositories {
-        sonatype {
-            username = System.env.MAVEN_CENTRAL_USER
-            password = System.env.MAVEN_CENTRAL_PASSWORD
         }
     }
 }

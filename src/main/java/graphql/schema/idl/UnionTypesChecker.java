@@ -48,7 +48,7 @@ class UnionTypesChecker {
 
         Stream.of(unionTypes.stream(), unionTypeExtensions.stream())
                 .flatMap(Function.identity())
-                .forEach(type -> checkUnionType(typeRegistry, type, errors));
+                .forEach(type -> checkUnionType(typeRegistry, (UnionTypeDefinition) type, errors));
     }
 
     private void checkUnionType(TypeDefinitionRegistry typeRegistry, UnionTypeDefinition unionTypeDefinition, List<GraphQLError> errors) {

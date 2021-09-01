@@ -2,17 +2,7 @@ package graphql.schema.idl;
 
 import graphql.GraphQLError;
 import graphql.Internal;
-import graphql.language.AstPrinter;
-import graphql.language.FieldDefinition;
-import graphql.language.ImplementingTypeDefinition;
-import graphql.language.InputValueDefinition;
-import graphql.language.InterfaceTypeDefinition;
-import graphql.language.InterfaceTypeExtensionDefinition;
-import graphql.language.NonNullType;
-import graphql.language.ObjectTypeDefinition;
-import graphql.language.ObjectTypeExtensionDefinition;
-import graphql.language.Type;
-import graphql.language.TypeName;
+import graphql.language.*;
 import graphql.schema.idl.errors.InterfaceFieldArgumentNotOptionalError;
 import graphql.schema.idl.errors.InterfaceFieldArgumentRedefinitionError;
 import graphql.schema.idl.errors.InterfaceFieldRedefinitionError;
@@ -68,7 +58,7 @@ class ImplementingTypesChecker {
 
         Stream.of(interfaces.stream(), objects.stream())
                 .flatMap(Function.identity())
-                .forEach(type -> checkImplementingType(errors, typeRegistry, type));
+                .forEach(type -> checkImplementingType(errors, typeRegistry, (ImplementingTypeDefinition) type));
     }
 
     private void checkImplementingType(
